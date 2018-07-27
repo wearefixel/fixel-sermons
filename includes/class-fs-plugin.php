@@ -37,9 +37,9 @@ class FS_Plugin {
         add_action( 'admin_menu', [ $this, 'add_settings_page' ] );
 
         remove_action( 'admin_footer_text', [ $this->ssp_admin, 'admin_footer_text' ], 1 );
-        remove_action( 'init', [ $this->ssp_admin, 'register_post_type' ], 1 );
         remove_action( 'admin_menu', [ $this->ssp_settings, 'add_menu_item' ] );
 
+        add_filter( 'ssp_register_post_type_args', [ $this, 'hide_ssp_podcast' ] );
         add_filter( 'ssp_settings_fields', [ $this, 'unset_ssp_settings' ] );
         add_filter( 'ssp_podcast_post_types', [ $this, 'podcast_post_type' ] );
     }
@@ -106,7 +106,22 @@ class FS_Plugin {
 
     public function podcast_post_type() {
         return [ $this->post_type ];
-    }
+	}
+
+	public function hide_ssp_podcast( $args ) {
+		$args['public'] = false;
+		$args['publicly_queryable'] = false;
+		$args['exclude_from_search'] = true;
+		$args['show_ui'] = false;
+		$args['show_in_menu'] = false;
+		$args['show_in_nav_menus'] = false;
+		$args['query_var'] = false;
+		$args['can_export'] = false;
+		$args['rewrite'] = false;
+		$args['has_archive'] = false;
+
+		return $args;
+	}
 
     public function unset_ssp_settings( $settings ) {
         foreach ( $settings as $key => $tab ) {
