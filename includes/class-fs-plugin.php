@@ -35,6 +35,7 @@ class FS_Plugin {
         add_action( 'init', [ $this, 'register_taxonomies' ] );
         add_action( 'admin_enqueue_scripts', [ $this, 'admin_assets' ] );
         add_action( 'admin_menu', [ $this, 'add_settings_page' ] );
+        add_action( 'admin_menu', [ $this, 'add_stats_page' ] );
 
         remove_action( 'admin_footer_text', [ $this->ssp_admin, 'admin_footer_text' ], 1 );
         remove_action( 'admin_menu', [ $this->ssp_settings, 'add_menu_item' ] );
@@ -108,7 +109,20 @@ class FS_Plugin {
             'podcast_settings',
             [ $this->ssp_settings, 'settings_page' ]
         );
-    }
+	}
+
+	public function add_stats_page() {
+		if ( defined( 'SSP_STATS_VERSION' ) ) {
+			add_submenu_page(
+				'edit.php?post_type=' . $this->post_type,
+				'Podcast Stats',
+				'Podcast Stats',
+				'manage_podcast',
+				'podcast_stats',
+				[ SSP_Stats(), 'stats_page' ]
+			);
+		}
+	}
 
     public function podcast_post_type() {
         return [ $this->post_type ];
