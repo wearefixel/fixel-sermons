@@ -130,14 +130,17 @@ class FS_Plugin {
 
     public function unset_ssp_settings( $settings ) {
         foreach ( $settings as $key => $tab ) {
-            foreach ( $tab['fields'] as $i => $field ) {
-                if ( in_array( $key, $this->ssp_unset_settings ) ) {
-                    unset( $settings[ $key ] );
-                } elseif ( isset( $this->ssp_unset_settings[ $key ] ) && in_array( $field['id'], $this->ssp_unset_settings[ $key ] ) ) {
-                    unset( $settings[ $key ]['fields'][ $i ] );
-                }
-            }
-        }
+			if ( in_array( $key, $this->ssp_unset_settings ) ) {
+				unset( $settings[ $key ] );
+			} else {
+				foreach ( $tab['fields'] as $i => $field ) {
+					if ( isset( $this->ssp_unset_settings[ $key ] ) && in_array( $field['id'], $this->ssp_unset_settings[ $key ] ) ) {
+						unset( $settings[ $key ]['fields'][ $i ] );
+					}
+				}
+			}
+
+		}
 
         return $settings;
     }
