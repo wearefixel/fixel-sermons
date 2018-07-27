@@ -40,6 +40,7 @@ class FS_Plugin {
         remove_action( 'admin_menu', [ $this->ssp_settings, 'add_menu_item' ] );
 
         add_filter( 'ssp_register_post_type_args', [ $this, 'hide_ssp_podcast' ] );
+        add_filter( 'ssp_register_taxonomy_args', [ $this, 'hide_ssp_series' ] );
         add_filter( 'ssp_settings_fields', [ $this, 'unset_ssp_settings' ] );
         add_filter( 'ssp_podcast_post_types', [ $this, 'podcast_post_type' ] );
     }
@@ -124,6 +125,14 @@ class FS_Plugin {
 		$args['can_export'] = false;
 		$args['rewrite'] = false;
 		$args['has_archive'] = false;
+
+		return $args;
+	}
+
+	public function hide_ssp_series( $args ) {
+		$args['public'] = false;
+		$args['rewrite'] = false;
+		$args['show_in_rest'] = false;
 
 		return $args;
 	}
