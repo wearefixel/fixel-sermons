@@ -12,8 +12,8 @@ define( 'FS_FILE', __FILE__ );
 define( 'FS_PATH', plugin_dir_path( FS_FILE ) );
 define( 'FS_URL', plugin_dir_url( FS_FILE ) );
 define( 'FS_BASENAME', plugin_basename( FS_FILE ) );
-define( 'FS_MIN_PHP', '5.4' );
-define( 'FS_MIN_WP', '4.5' );
+define( 'FS_MIN_PHP', '7.0' );
+define( 'FS_MIN_WP', '4.9' );
 
 function fs_init() {
 	if ( ! version_compare( PHP_VERSION, FS_MIN_PHP, '>=' ) ) {
