@@ -90,7 +90,12 @@ class FS_Plugin {
     }
 
     public function admin_assets() {
-        wp_enqueue_style( 'fs-admin', FS_URL . '/assets/css/admin.css' );
+        wp_enqueue_style(
+			'fs-admin',
+			FS_URL . 'assets/css/admin.css',
+			[],
+			filemtime( FS_PATH . 'assets/css/admin.css' )
+		);
     }
 
     public function add_settings_page() {
