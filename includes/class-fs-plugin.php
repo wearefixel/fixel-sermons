@@ -101,8 +101,8 @@ class FS_Plugin {
     public function add_settings_page() {
         add_submenu_page(
             'edit.php?post_type=' . $this->post_type,
-            'Settings',
-            'Settings',
+            'Podcast Settings',
+            'Podcast Settings',
             'manage_podcast',
             'podcast_settings',
             [ $this->ssp_settings, 'settings_page' ]
