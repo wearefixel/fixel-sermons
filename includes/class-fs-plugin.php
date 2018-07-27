@@ -78,15 +78,15 @@ class FS_Plugin {
             $this->register_taxonomy( 'Series', 'Series' );
         }
 
-        if ( apply_filters( 'fs_enable_speakers', true ) ) {
+        if ( apply_filters( 'fs_enable_speakers', false ) ) {
             $this->register_taxonomy( 'Speakers', 'Speaker' );
         }
 
-        if ( apply_filters( 'fs_enable_books', true ) ) {
+        if ( apply_filters( 'fs_enable_books', false ) ) {
             $this->register_taxonomy( 'Books', 'Book' );
         }
 
-        if ( apply_filters( 'fs_enable_topics', true ) ) {
+        if ( apply_filters( 'fs_enable_topics', false ) ) {
             $this->register_taxonomy( 'Topics', 'Topic' );
         }
     }
