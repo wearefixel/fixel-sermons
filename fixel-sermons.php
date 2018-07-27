@@ -1,6 +1,8 @@
 <?php
 /**
  * Plugin Name: Fixel Sermons
+ * Description: Extends Seriously Simple Podcasting to turn it into a powerful sermon management system.
+ * Version: 1.0.0
  * Author: Fixel
  * Author URI: https://wearefixel.com/
  */
