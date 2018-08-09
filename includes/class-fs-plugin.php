@@ -20,7 +20,7 @@ class FS_Plugin {
         ],
         'security',
         'castos-hosting',
-        'extensions', // @todo why is this not working?
+        'extensions',
     ];
 
     protected $post_type = 'fs_sermon';
