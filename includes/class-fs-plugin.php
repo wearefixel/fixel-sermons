@@ -33,9 +33,10 @@ class FS_Plugin {
 
         add_action( 'init', [ $this, 'register_sermons' ] );
         add_action( 'init', [ $this, 'register_taxonomies' ] );
+		add_action( 'save_post', [ $this, 'delete_series_order_transient' ], 10, 3 );
         add_action( 'admin_enqueue_scripts', [ $this, 'admin_assets' ] );
         add_action( 'admin_menu', [ $this, 'add_settings_page' ] );
-        add_action( 'admin_menu', [ $this, 'add_stats_page' ] );
+		add_action( 'admin_menu', [ $this, 'add_stats_page' ] );
 
         remove_action( 'admin_footer_text', [ $this->ssp_admin, 'admin_footer_text' ], 1 );
         remove_action( 'admin_menu', [ $this->ssp_settings, 'add_menu_item' ] );
@@ -89,7 +90,15 @@ class FS_Plugin {
         if ( apply_filters( 'fs_enable_topics', false ) ) {
             $this->register_taxonomy( 'Topics', 'Topic' );
         }
-    }
+	}
+
+	public function delete_series_order_transient( $post_id, $post, $update ) {
+		if ( 'fs_sermon' != $post->post_type ) {
+			return;
+		}
+
+		delete_transient( 'fs_series_order' );
+	}
 
     public function admin_assets() {
         wp_enqueue_style(

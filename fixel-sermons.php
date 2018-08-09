@@ -24,6 +24,7 @@ function fs_init() {
 		add_action( 'admin_notices', 'fs_fail_ssp' );
 	} else {
 		include_once FS_PATH . 'includes/class-fs-plugin.php';
+		include_once FS_PATH . 'includes/functions.php';
 	}
 }
 add_action( 'plugins_loaded', 'fs_init' );
