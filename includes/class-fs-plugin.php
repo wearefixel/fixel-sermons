@@ -45,6 +45,8 @@ class FS_Plugin {
 		add_filter( 'ssp_register_taxonomy_args', [ $this, 'hide_ssp_series' ] );
 		add_filter( 'ssp_settings_fields', [ $this, 'unset_ssp_settings' ] );
 		add_filter( 'ssp_podcast_post_types', [ $this, 'podcast_post_type' ] );
+		add_filter( 'ssp_feed_number_of_posts', [ $this, 'feed_items_limit' ] );
+
 	}
 
 	public function register_sermons() {
@@ -175,6 +177,10 @@ class FS_Plugin {
 		}
 
 		return $settings;
+	}
+
+	public function feed_items_limit() {
+		return 10000;
 	}
 
 	protected function register_taxonomy( $name, $singular_name ) {
