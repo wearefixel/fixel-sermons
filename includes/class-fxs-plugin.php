@@ -108,6 +108,10 @@ class FXS_Plugin {
 		if (apply_filters('fxs_enable_topics', false)) {
 			$this->register_taxonomy('Topics', 'Topic');
 		}
+
+		if (apply_filters('fxs_enable_locations', false)) {
+			$this->register_taxonomy('Locations', 'Location');
+		}
 	}
 
 	public function delete_series_order_transient($post_id, $post, $update) {
