@@ -1,9 +1,8 @@
 === Fixel Sermons ===
 Contributors: fixel, galengidman
 Requires at least: 4.9.0
-Tested up to: 5.2
+Tested up to: 5.6
 Requires PHP: 7.0
-Stable tag: trunk
 
 Extends Seriously Simple Podcasting to turn it into a powerful sermon management system.
 
