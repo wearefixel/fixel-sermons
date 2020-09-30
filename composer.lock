@@ -1,32 +1,33 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
     "content-hash": "cbc3d751626fc9e972d607122d7ee75d",
     "packages": [
         {
             "name": "yahnis-elsts/plugin-update-checker",
-            "version": "v4.6",
+            "version": "v4.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/YahnisElsts/plugin-update-checker.git",
-                "reference": "45374e3c02126fbebebf0244c5d5da4c5e0166ac"
+                "reference": "0edd15f67822464af8a23285ce367b30d515a855"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/YahnisElsts/plugin-update-checker/zipball/45374e3c02126fbebebf0244c5d5da4c5e0166ac",
-                "reference": "45374e3c02126fbebebf0244c5d5da4c5e0166ac",
+                "url": "https://api.github.com/repos/YahnisElsts/plugin-update-checker/zipball/0edd15f67822464af8a23285ce367b30d515a855",
+                "reference": "0edd15f67822464af8a23285ce367b30d515a855",
                 "shasum": ""
             },
             "require": {
+                "ext-json": "*",
                 "php": ">=5.2.0"
             },
             "type": "library",
             "autoload": {
                 "files": [
-                    "plugin-update-checker.php"
+                    "load-v4p10.php"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -49,7 +50,7 @@
                 "theme updates",
                 "wordpress"
             ],
-            "time": "2019-04-02T17:56:11+00:00"
+            "time": "2020-08-21T11:36:45+00:00"
         }
     ],
     "packages-dev": [],
@@ -59,5 +60,6 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
 }
