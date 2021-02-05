@@ -58,11 +58,15 @@ class FXS_Plugin {
 	}
 
 	public function unregister_ssp_podcast() {
-		unregister_post_type('podcast');
+		if (apply_filters('fxs_unregister_ssp_podcast', true)) {
+			unregister_post_type('podcast');
+		}
 	}
 
 	public function unregister_ssp_series() {
-		unregister_taxonomy('series');
+		if (apply_filters('fxs_unregister_ssp_series', true)) {
+			unregister_taxonomy('series');
+		}
 	}
 
 	public function register_sermons() {
