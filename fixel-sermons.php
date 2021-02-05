@@ -2,12 +2,12 @@
 /**
  * Plugin Name: Fixel Sermons
  * Description: Extends Seriously Simple Podcasting to turn it into a powerful sermon management system.
- * Version: 1.2.0
+ * Version: 1.3.0
  * Author: Fixel
  * Author URI: https://wearefixel.com/
  */
 
-define('FXS_VERSION', '1.1.1');
+define('FXS_VERSION', '1.3.0');
 define('FXS_FILE', __FILE__);
 define('FXS_PATH', plugin_dir_path(FXS_FILE));
 define('FXS_URL', plugin_dir_url(FXS_FILE));
