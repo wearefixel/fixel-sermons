@@ -53,6 +53,8 @@ class FXS_Plugin
 		remove_action('wp_footer', [$this->ss_podcasting, 'load_scripts']);
 		remove_action('wp_enqueue_scripts', [$this->ss_podcasting, 'load_scripts']);
 
+		add_filter('wpseo_schema_needs_seriouslysimplepodcasting\integrations\yoast\schema\podcastepisode', '__return_false');
+
 		add_filter('ssp_settings_fields', [$this, 'unset_ssp_settings']);
 		add_filter('ssp_podcast_post_types', [$this, 'podcast_post_type']);
 		add_filter('ssp_feed_number_of_posts', [$this, 'feed_items_limit']);
