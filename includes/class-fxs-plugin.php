@@ -1,7 +1,7 @@
 <?php
 
-class FXS_Plugin {
-
+class FXS_Plugin
+{
 	protected $ssp_admin;
 	protected $ssp_settings;
 
@@ -25,7 +25,8 @@ class FXS_Plugin {
 
 	protected $post_type = 'fxs_sermon';
 
-	public function __construct() {
+	public function __construct()
+	{
 		global $ssp_admin, $ss_podcasting, $ssp_settings;
 
 		$this->ssp_admin = $ssp_admin;
@@ -57,19 +58,22 @@ class FXS_Plugin {
 		add_filter('ssp_feed_number_of_posts', [$this, 'feed_items_limit']);
 	}
 
-	public function unregister_ssp_podcast() {
+	public function unregister_ssp_podcast()
+	{
 		if (apply_filters('fxs_unregister_ssp_podcast', true)) {
 			unregister_post_type('podcast');
 		}
 	}
 
-	public function unregister_ssp_series() {
+	public function unregister_ssp_series()
+	{
 		if (apply_filters('fxs_unregister_ssp_series', true)) {
 			unregister_taxonomy('series');
 		}
 	}
 
-	public function register_sermons() {
+	public function register_sermons()
+	{
 		if (apply_filters('fxs_enable_sermons', true)) {
 			register_post_type($this->post_type, apply_filters('fxs_sermon_args', [
 				'labels' => [
@@ -96,7 +100,8 @@ class FXS_Plugin {
 		}
 	}
 
-	public function register_taxonomies() {
+	public function register_taxonomies()
+	{
 		if (apply_filters('fxs_enable_series', true)) {
 			$this->register_taxonomy('Series', 'Series');
 		}
@@ -118,7 +123,8 @@ class FXS_Plugin {
 		}
 	}
 
-	public function delete_series_order_transient($post_id, $post, $update) {
+	public function delete_series_order_transient($post_id, $post, $update)
+	{
 		if ('fxs_sermon' != $post->post_type) {
 			return;
 		}
@@ -126,7 +132,8 @@ class FXS_Plugin {
 		delete_transient('fxs_series_order');
 	}
 
-	public function admin_assets() {
+	public function admin_assets()
+	{
 		wp_enqueue_style(
 			'fxs-admin',
 			FXS_URL . 'assets/css/admin.css',
@@ -135,7 +142,8 @@ class FXS_Plugin {
 		);
 	}
 
-	public function add_settings_page() {
+	public function add_settings_page()
+	{
 		add_submenu_page(
 			'edit.php?post_type=' . $this->post_type,
 			'Podcast Settings',
@@ -146,7 +154,8 @@ class FXS_Plugin {
 		);
 	}
 
-	public function add_stats_page() {
+	public function add_stats_page()
+	{
 		if (defined('SSP_STATS_VERSION')) {
 			add_submenu_page(
 				'edit.php?post_type=' . $this->post_type,
@@ -159,15 +168,18 @@ class FXS_Plugin {
 		}
 	}
 
-	public function remove_embed_code_metabox() {
+	public function remove_embed_code_metabox()
+	{
 		remove_meta_box('episode-embed-code', 'fxs_sermon', 'side');
 	}
 
-	public function podcast_post_type() {
+	public function podcast_post_type()
+	{
 		return [$this->post_type];
 	}
 
-	public function unset_ssp_settings($settings) {
+	public function unset_ssp_settings($settings)
+	{
 		foreach ($settings as $key => $tab) {
 			if (in_array($key, $this->ssp_unset_settings)) {
 				unset($settings[$key]);
@@ -178,17 +190,18 @@ class FXS_Plugin {
 					}
 				}
 			}
-
 		}
 
 		return $settings;
 	}
 
-	public function feed_items_limit() {
+	public function feed_items_limit()
+	{
 		return 10000;
 	}
 
-	protected function register_taxonomy($name, $singular_name) {
+	protected function register_taxonomy($name, $singular_name)
+	{
 		$name_key = sanitize_key($name);
 		$name_lower = strtolower($name);
 		$singular_name_key = sanitize_key($singular_name);
@@ -216,7 +229,6 @@ class FXS_Plugin {
 			'rewrite' => ['slug' => 'sermon-' . $name_key, 'with_front' => false],
 		]));
 	}
-
 }
 
 $GLOBALS['fixel-sermons']['plugin'] = new FXS_Plugin();
